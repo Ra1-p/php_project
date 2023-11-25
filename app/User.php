@@ -12,10 +12,14 @@ class User extends Model
      * @var array
      */
     protected $fillable = [
-        'name',
+        'fname',
+        'lname',
         'email',
+        'image',
+        'phone_number',
+        'location',
+        'birthday',
         'password',
-        'check_password',
     ];
 
     /**
@@ -25,7 +29,6 @@ class User extends Model
      */
     protected $hidden = [
         'password',
-        'check_password',
     ];
 
     /**
@@ -41,7 +44,9 @@ class User extends Model
      */
     protected $allowedFilters = [
         'id',
-        'name',
+        'fname',
+        'lname',
+        'phone_number',
         'email',
     ];
 
@@ -52,7 +57,9 @@ class User extends Model
      */
     protected $allowedSorts = [
         'id',
-        'name',
+        'fname',
+        'lname',
+        'phone_number',
         'email',
         'updated_at',
         'created_at',

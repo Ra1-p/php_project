@@ -11,13 +11,13 @@ class ProfileController extends Controller
 {
     use AuthenticatesUsers;
     public function show($userId){
-        $profile = User::find($userId);
+        $user = User::find($userId);
 
-        if (!$profile) {
+        if (!$user) {
             abort(404); // или другая логика обработки отсутствующего пользователя
         }
 
-        return view('user.profile', compact('profile'));
+        return view('user.profile', compact('user'));
     }
     public function edit(User $user){
         return view('user.editprofile', compact('user'));
@@ -25,8 +25,14 @@ class ProfileController extends Controller
 
     public function update(User $user){
         $userData = request()->validate([
-            "name" => "string",
-            "email" => "required|email",
+            "fname" => "sometimes|required|string",
+            "lname"=> "sometimes|required|string",
+            "email" => "sometimes|required|email",
+            "phone_number"=> "sometimes|required|string",
+            "image"=> "sometimes|required|string",
+            "birthday"=> "sometimes|required|date",
+            "location"=> "sometimes|required|string",
+
         ]);
         $user->update($userData);
         return redirect()->route("profile", $user->id);

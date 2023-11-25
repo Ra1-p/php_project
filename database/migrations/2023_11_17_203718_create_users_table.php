@@ -15,17 +15,21 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('fname');
+            $table->string('lname');
+            $table->string('image')->nullable();
             $table->string('email');
+            $table->string('phone_number', 15)->nullable();
+            $table->string('location')->nullable();
+            $table->date('birthday')->format('Y-m-d')->nullable();
             $table->string('password');
-            $table->string('check_password');
             $table->timestamps();
 
-            $table->unsignedBigInteger('category_id')->nullable();
+        //     $table->unsignedBigInteger('category_id')->nullable();
 
-            $table->index('category_id', 'user_category_idx');
+        //     $table->index('category_id', 'user_category_idx');
 
-            $table->foreign('category_id', 'user_category_fk')->on('categories')->references('id');
+        //     $table->foreign('category_id', 'user_category_fk')->on('categories')->references('id');
         });
     }
 

@@ -5,8 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\User;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-use Illuminate\Foundation\Auth\Auth;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
@@ -30,9 +28,9 @@ class AuthController extends Controller
         $user = User::where('email', $userData['email'])->first();
 
         if ($user) {
-            $user->password = Hash::make($userData['password']);
+
             // Проверка пароля
-            if ($userData["password"] === $user->password) {
+            if (Hash::check($userData["password"], $user->password)) {
                 // Пароль совпадает, перенаправляем на страницу профиля
                 $userId = $user->id;
                 return redirect()->route('profile', [$userId]);

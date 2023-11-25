@@ -21,10 +21,10 @@
           <div class="card-body text-center">
             <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar"
               class="rounded-circle img-fluid" style="width: 150px;">
-            <h5 class="my-3">{{ $profile->name }}</h5>
-            <p class="text-muted mb-4">Location, country of burn</p>
+            <h5 class="my-3">{{ $user->fname }} {{ $user->lname}}</h5>
+            <p class="text-muted mb-4">{{ $user->location}}</p>
             <div class="d-flex justify-content-center mb-2">
-                <a href="{{ route('profile.edit', $profile->id) }}"><button type="button" class="btn btn-primary" >Edit</button></a>
+                <a href="{{ route('profile.edit', $user->id) }}"><button type="button" class="btn btn-primary" >Edit</button></a>
                 <button type="button" class="btn btn-primary ms-1">Follow</button>
                 <button type="button" class="btn btn-outline-primary ms-1">Message</button>
             </div>
@@ -65,7 +65,7 @@
                 <p class="mb-0">Full Name</p>
               </div>
               <div class="col-sm-9">
-                <p class="text-muted mb-0">{{ $profile->name }}</p>
+                <p class="text-muted mb-0">{{ $user->fname }} {{ $user->lname}}</p>
               </div>
             </div>
             <hr>
@@ -74,7 +74,7 @@
                 <p class="mb-0">Email</p>
               </div>
               <div class="col-sm-9">
-                <p class="text-muted mb-0">{{ $profile->email }}</p>
+                <p class="text-muted mb-0">{{ $user->email }}</p>
               </div>
             </div>
             <hr>
@@ -83,7 +83,7 @@
                 <p class="mb-0">Phone</p>
               </div>
               <div class="col-sm-9">
-                <p class="text-muted mb-0">(097) 234-5678</p>
+                <p class="text-muted mb-0">{{ $user->phone_number}}</p>
               </div>
             </div>
             <hr>
@@ -101,7 +101,7 @@
                 <p class="mb-0">Address</p>
               </div>
               <div class="col-sm-9">
-                <p class="text-muted mb-0">Bay Area, San Francisco, CA</p>
+                <p type="phone" class="text-muted mb-0">{{ $user->location}}</p>
               </div>
             </div>
           </div>
