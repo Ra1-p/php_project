@@ -70,7 +70,11 @@ return [
             'driver' => 'eloquent',
             'model' => App\User::class,
         ],
-
+    'remember' => [
+        'providers' => 'users',
+        'table' => 'password_resets',
+        'expire' => 60,
+    ]
         // 'users' => [
         //     'driver' => 'database',
         //     'table' => 'users',

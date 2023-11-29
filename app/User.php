@@ -5,9 +5,10 @@ namespace App;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Notifications\Notifiable;
 
 /**
- * @property string $fname
+ *
  * @property string $password
  *
  * @property Profile $profile
@@ -15,7 +16,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class User extends Model implements Authenticatable
 {
     use SoftDeletes, \Illuminate\Auth\Authenticatable;
-
+    use Notifiable;
     /**
      * The attributes that are mass assignable.
      *

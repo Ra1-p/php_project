@@ -28,13 +28,13 @@ class ProfileController extends Controller
 
     }
 
-    public function show($userId)
+    public function show($id)
     {
         /** @var User $user */
-        $user = User::query()->with('profile')->find($userId);
+        $user = User::query()->with('profile')->find($id);
 
         if (!$user) {
-            abort(404); // или другая логика обработки отсутствующего пользователя
+            return redirect()->back()->with('error', 'Пользователя с такими учетными данным не существует'); // или другая логика обработки отсутствующего пользователя
         }
 
         return view('profile.profile', compact('user'));

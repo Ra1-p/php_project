@@ -37,8 +37,8 @@
                                     </div>
 
                                     <div class="form-check d-flex justify-content-center mb-5">
-                                        <input name="remember" class="form-check-input me-2" type="checkbox" value=""
-                                               id="form2Example3c"/>
+                                        <input name="remember" class="form-check-input me-2" type="checkbox"
+                                             {{ old('remember') ? 'checked' : '' }} />
                                         <label class="form-check-label" for="form2Example3">
                                             Remember me
                                         </label>

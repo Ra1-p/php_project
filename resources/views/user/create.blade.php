@@ -81,10 +81,10 @@
                                     </div>
 
                                     <div class="form-check d-flex justify-content-center mb-5">
-                                        <input class="form-check-input me-2" type="checkbox" value=""
+                                        <input name="remember" class="form-check-input me-2" type="checkbox" value=""
                                                id="form2Example3c"/>
                                         <label class="form-check-label" for="form2Example3">
-                                            I agree all statements in <a href="#">Terms of service</a>
+                                            Remember me
                                         </label>
                                     </div>
 

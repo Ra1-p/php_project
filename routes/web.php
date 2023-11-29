@@ -3,8 +3,9 @@
 use Illuminate\Support\Facades\Route;
 
 // Ссылка на форму входа в учетную запись пользователя
-Route::get('/login', [\App\Http\Controllers\AuthController::class, 'showLoginForm']);
-Route::post('/log', [\App\Http\Controllers\AuthController::class, 'login'])->name('login');
+Route::get('/login', [\App\Http\Controllers\AuthController::class, 'showLoginForm'])->name('login');
+Route::post('/login', [\App\Http\Controllers\AuthController::class, 'login']);
+
 
 // Ссылка на форму регистрации в учетную запись пользователя
 Route::get('/register', [\App\Http\Controllers\UserController::class, 'showRegistrationForm'])->name('register');
@@ -12,7 +13,7 @@ Route::post('/register', [\App\Http\Controllers\UserController::class, 'create']
 
 // Ссылки на профиль пользователя
 Route::get('/profile', [\App\Http\Controllers\ProfileController::class, 'create'])->name('target.profile');
-Route::get('/profile/{user}',[\App\Http\Controllers\ProfileController::class, 'show'])->name('profile');
+Route::get('/profile/{id}',[\App\Http\Controllers\ProfileController::class, 'show'])->name('profile');
 
 // Ссылки на изменение и редактиврование данных пользователя профиль пользователя
 Route::get('/profile/{user}/edit',[\App\Http\Controllers\ProfileController::class, 'edit'])->name('profile.edit');
@@ -23,8 +24,6 @@ Route::get('/messages',[\App\Http\Controllers\MessageController::class, 'index']
 // Route::post('/logout', 'LoginController@logout')->name('logout');
 // Route::get('/profile', 'ProfileController@index')->middleware('auth');
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/',[\App\Http\Controllers\AuthController::class, 'attemptLogin']);
 
 
