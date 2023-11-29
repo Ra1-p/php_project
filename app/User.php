@@ -2,23 +2,28 @@
 
 namespace App;
 
+use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
-class User extends Model
+/**
+ * @property string $fname
+ * @property string $password
+ *
+ * @property Profile $profile
+ */
+class User extends Model implements Authenticatable
 {
+    use SoftDeletes, \Illuminate\Auth\Authenticatable;
+
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'fname',
-        'lname',
         'email',
-        'image',
         'phone_number',
-        'location',
-        'birthday',
         'password',
     ];
 
@@ -32,20 +37,12 @@ class User extends Model
     ];
 
     /**
-     * The attributes that should be cast to native types.
-     *
-     * @var array
-     */
-
-    /**
      * The attributes for which you can use filters in url.
      *
      * @var array
      */
     protected $allowedFilters = [
         'id',
-        'fname',
-        'lname',
         'phone_number',
         'email',
     ];
@@ -57,11 +54,20 @@ class User extends Model
      */
     protected $allowedSorts = [
         'id',
-        'fname',
-        'lname',
         'phone_number',
         'email',
         'updated_at',
         'created_at',
     ];
+
+    public function profile()
+    {
+        return $this->hasOne(Profile::class);
+    }
+
+//
+//    public function posts()
+//    {
+//        return $this->hasMany(Post::class);
+//    }
 }

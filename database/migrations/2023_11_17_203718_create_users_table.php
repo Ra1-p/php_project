@@ -15,15 +15,11 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('fname');
-            $table->string('lname');
-            $table->string('image')->nullable();
             $table->string('email');
             $table->string('phone_number', 15)->nullable();
-            $table->string('location')->nullable();
-            $table->date('birthday')->format('Y-m-d')->nullable();
             $table->string('password');
             $table->timestamps();
+            $table->softDeletes();
 
         //     $table->unsignedBigInteger('category_id')->nullable();
 

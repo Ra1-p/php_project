@@ -22,7 +22,7 @@
                             <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp"
                                  alt="avatar"
                                  class="rounded-circle img-fluid" style="width: 150px;">
-                            <h5 class="my-3">{{ $user->fname }} {{ $user->lname}}</h5>
+                            <h5 class="my-3">{{ $user->profile()->first()->first_name }} {{ $user->profile()->first()->last_name}}</h5>
                             <p class="text-muted mb-4">{{ $user->location}}</p>
                             <div class="d-flex justify-content-center mb-2">
                                 <a href="{{ route('profile.edit', $user->id) }}">
@@ -68,7 +68,7 @@
                                     <p class="mb-0">Full Name</p>
                                 </div>
                                 <div class="col-sm-9">
-                                    <p class="text-muted mb-0">{{ $user->fname }} {{ $user->lname}}</p>
+                                    <p class="text-muted mb-0">{{ $user->profile()->first()->first_name }} {{ $user->profile()->first()->last_name}}</p>
                                 </div>
                             </div>
                             <hr>
@@ -104,7 +104,7 @@
                                     <p class="mb-0">Address</p>
                                 </div>
                                 <div class="col-sm-9">
-                                    <p type="phone" class="text-muted mb-0">{{ $user->location}}</p>
+                                    <p type="phone" class="text-muted mb-0">{{ $user->profile()->first()->location}}</p>
                                 </div>
                             </div>
                         </div>
