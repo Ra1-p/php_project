@@ -47,6 +47,10 @@
                                     <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
                                         <button type="submit" class="btn btn-primary btn-lg">Login</button>
                                     </div>
+                                    <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+                                        <p>Don't have an account? <a href="{{route('register')}}">Sign up</a></p>
+                                    </div>
+
                                 </form>
                             </div>
                         </div>

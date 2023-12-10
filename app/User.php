@@ -2,21 +2,24 @@
 
 namespace App;
 
-use Illuminate\Contracts\Auth\Authenticatable;
+
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Contracts\Auth\Authenticatable;
 
 /**
  *
  * @property string $password
- *
+ * @property string $remember_token
  * @property Profile $profile
  */
 class User extends Model implements Authenticatable
 {
-    use SoftDeletes, \Illuminate\Auth\Authenticatable;
+
+    use SoftDeletes;
     use Notifiable;
+
     /**
      * The attributes that are mass assignable.
      *
@@ -57,6 +60,7 @@ class User extends Model implements Authenticatable
         'id',
         'phone_number',
         'email',
+        'remember_token',
         'updated_at',
         'created_at',
     ];
@@ -64,6 +68,37 @@ class User extends Model implements Authenticatable
     public function profile()
     {
         return $this->hasOne(Profile::class);
+    }
+
+    public function getAuthIdentifierName()
+    {
+        return 'id'; // Имя поля, которое используется в качестве идентификатора аутентификации
+    }
+
+    public function getAuthIdentifier()
+    {
+        return $this->getKey(); // Возвращает значение идентификатора аутентификации
+    }
+
+    public function getAuthPassword()
+    {
+        return $this->password; // Возвращает пароль пользователя
+    }
+
+    public function getRememberToken()
+    {
+        return $this->remember_token;
+    }
+
+    public function getRememberTokenName()
+    {
+        return 'remember_token';
+    }
+
+    public function setRememberToken($value)
+    {
+        $this->attributes['remember_token'] = $value;
+        $this->save();
     }
 
 //

@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 
+
+Route::get('/',[\App\Http\Controllers\AuthController::class, 'attemptLogin']);
 // Ссылка на форму входа в учетную запись пользователя
 Route::get('/login', [\App\Http\Controllers\AuthController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [\App\Http\Controllers\AuthController::class, 'login']);
@@ -24,6 +26,5 @@ Route::get('/messages',[\App\Http\Controllers\MessageController::class, 'index']
 // Route::post('/logout', 'LoginController@logout')->name('logout');
 // Route::get('/profile', 'ProfileController@index')->middleware('auth');
 
-Route::get('/',[\App\Http\Controllers\AuthController::class, 'attemptLogin']);
 
 
