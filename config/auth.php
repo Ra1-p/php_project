@@ -73,7 +73,7 @@ return [
         'remember' => [
             'providers' => 'users',
             'table' => 'remember_token',
-            'expire' => 1440,
+            'expire' => 86400,
         ]
         // 'users' => [
         //     'driver' => 'database',

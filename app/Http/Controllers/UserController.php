@@ -12,7 +12,8 @@ use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 
 class UserController extends Controller
 {
-    public function create(CreateRequest $request){
+    public function create(CreateRequest $request)
+    {
         $userData = $request->validated();
 
         $userData['password'] = Hash::make($userData['password']);
@@ -24,12 +25,9 @@ class UserController extends Controller
         }
 
         $userData["user_id"] = $model->id;
-        $request->session()->put('profile_data', $userData);
+        Profile::query()->firstOrCreate($userData);
 
-        return redirect()->route('target.profile');
-//        Auth::login($model, passthru($model->password));
-//
-//        return redirect('/profile');
+        return redirect()->route('profile', $model->id);
     }
     public function showRegistrationForm(){
         return view("user.create");

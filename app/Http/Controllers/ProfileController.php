@@ -14,20 +14,10 @@ class ProfileController extends Controller
 {
     use AuthenticatesUsers;
 
-    public function create(Request $request)
+    public function index(Request $request)
     {
-        $profile_data = $request->session()->get('profile_data');
-        $user = User::find($profile_data["user_id"]);
-
-        $profile = new Profile($profile_data);
-        $request->session()->forget('profile_data');
-        $user->profile()->save($profile);
-        Auth::login($user, passthru($user->password));
-
-        return redirect()->route('profile', $user->id);
-
+        return redirect()->route('profile', Auth::id());
     }
-
     public function show($id)
     {
         /** @var User $user */

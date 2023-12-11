@@ -23,9 +23,9 @@ class AuthController extends Controller
         $user = $this->guard()->user();
 
         // Если пользователь выбрал "Remember Me", Laravel автоматически обработает токен
-//        if ($remember) {
-//            $user->updateRememberToken($user->getRememberToken());
-//        }
+        if ($remember) {
+
+        }
 
         // Измените редирект в зависимости от ваших потребностей
         return redirect()->route('profile', $user->getAuthIdentifier());
