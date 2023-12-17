@@ -18,7 +18,6 @@ class Profile extends Model
         'user_id',
         'first_name',
         'last_name',
-        'phone_number',
         'image',
         'location',
         'birthday'
@@ -28,7 +27,6 @@ class Profile extends Model
         'user_id',
         'first_name',
         'last_name',
-        'phone_number',
     ];
 
     public function user()
