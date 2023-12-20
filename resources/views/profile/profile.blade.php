@@ -48,8 +48,8 @@
                 <div class="col-lg-4">
                     <div class="card mb-4">
                         <div class="card-body text-center">
-                            @if($user->profile()->first()->image)
-                                <img src="{{ asset('storage/' . $user->profile()->first()->image) }}" alt="avatar" class="rounded-circle img-fluid" style="width: 150px;">
+                            @if($user->profile->image)
+                                <img src="{{ Storage::url($user->profile->image) }}" alt="avatar" class="rounded-circle img-fluid" style="width: 150px;">
                             @else
                                 <img src="https://ростр.рф/assets/img/no-profile.png" alt="avatar" class="rounded-circle img-fluid" style="width: 150px;">
                             @endif

@@ -26,7 +26,6 @@ class ProfileController extends Controller
         if (!$user) {
             return redirect()->back()->with('error', 'Пользователя с такими учетными данным не существует'); // или другая логика обработки отсутствующего пользователя
         }
-
         return view('profile.profile', compact('user'));
     }
 
@@ -55,7 +54,7 @@ class ProfileController extends Controller
 
             if ($request->hasFile('image')) {
                 $image = $request->file('image');
-                $path = $image->store('image');
+                $path = $image->store('profile/image', 'public');
                 $profile->update(['image' => $path]);
             }
 

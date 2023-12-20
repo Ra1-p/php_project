@@ -69,8 +69,7 @@
                                     <div class="d-flex flex-row align-items-center mb-4">
                                         <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
                                         <div class="form-outline flex-fill mb-0">
-                                            <input name="image" type="file" id="form3Example3c" accept="image/*"
-                                                   value="{{ old($user->profile()->first()->image ?? '') }}"/>
+                                            <input name="image" type="file" id="form3Example3c" accept="image/*"/>
                                             <label class="form-label" for="form3Example3c">Your Email</label>
                                         </div>
                                     </div>

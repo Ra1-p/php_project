@@ -25,7 +25,8 @@ Route::patch('/profile/{user}/update',[\App\Http\Controllers\ProfileController::
 Route::get('/messages',[\App\Http\Controllers\MessageController::class, 'index'])->name('messages.list');
 
 Route::get('/check', function (){
-   $path = public_path('storage/').'rpqEk8CNpain1GrCUHx5YIQaZXtQT8K0lm9Lp8vi.jpg';
+   $user =  request()->user();
+   $path = public_path($user->profile->image);
    if (file_exists($path)){
        dump(getimagesize($path));
        return response()->json(['exists' => true, 'path' => $path,]);
