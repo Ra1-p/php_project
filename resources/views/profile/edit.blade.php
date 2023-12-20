@@ -15,7 +15,7 @@
 
                                 <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Edit profile data</p>
 
-                                <form action="{{ route('profile.update', $user->id) }}" method="post"
+                                <form action="{{ route('profile.update', $user->id) }}" method="post" enctype="multipart/form-data"
                                       class="mx-1 mx-md-4">
                                     @csrf
                                     @method('patch')
@@ -62,6 +62,15 @@
                                         <div class="form-outline flex-fill mb-0">
                                             <input name="email" type="email" id="form3Example3c" class="form-control"
                                                    value="{{ $user->email }}"/>
+                                            <label class="form-label" for="form3Example3c">Your Email</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="d-flex flex-row align-items-center mb-4">
+                                        <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
+                                        <div class="form-outline flex-fill mb-0">
+                                            <input name="image" type="file" id="form3Example3c" accept="image/*"
+                                                   value="{{ old($user->profile()->first()->image ?? '') }}"/>
                                             <label class="form-label" for="form3Example3c">Your Email</label>
                                         </div>
                                     </div>

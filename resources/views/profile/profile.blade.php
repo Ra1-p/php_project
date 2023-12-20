@@ -48,9 +48,11 @@
                 <div class="col-lg-4">
                     <div class="card mb-4">
                         <div class="card-body text-center">
-                            <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp"
-                                 alt="avatar"
-                                 class="rounded-circle img-fluid" style="width: 150px;">
+                            @if($user->profile()->first()->image)
+                                <img src="{{ asset('storage/' . $user->profile()->first()->image) }}" alt="avatar" class="rounded-circle img-fluid" style="width: 150px;">
+                            @else
+                                <img src="https://ростр.рф/assets/img/no-profile.png" alt="avatar" class="rounded-circle img-fluid" style="width: 150px;">
+                            @endif
                             <h5 class="my-3">{{ $user->profile()->first()->first_name }} {{ $user->profile()->first()->last_name}}</h5>
                             <p class="text-muted mb-4">{{ $user->location}}</p>
                             <div class="d-flex justify-content-center mb-2">
@@ -58,7 +60,9 @@
                                     <button type="button" class="btn btn-primary">Edit</button>
                                 </a>
                                 <button type="button" class="btn btn-primary ms-1">Follow</button>
+                                <a href="{{ route('messages.list') }}">
                                 <button type="button" class="btn btn-outline-primary ms-1">Message</button>
+                                </a>
                             </div>
                         </div>
                     </div>

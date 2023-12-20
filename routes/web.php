@@ -22,7 +22,17 @@ Route::get('/profile/{id}',[\App\Http\Controllers\ProfileController::class, 'sho
 Route::get('/profile/{user}/edit',[\App\Http\Controllers\ProfileController::class, 'edit'])->name('profile.edit');
 Route::patch('/profile/{user}/update',[\App\Http\Controllers\ProfileController::class, 'update'])->name('profile.update');
 
-Route::get('/messages',[\App\Http\Controllers\MessageController::class, 'index']);
+Route::get('/messages',[\App\Http\Controllers\MessageController::class, 'index'])->name('messages.list');
+
+Route::get('/check', function (){
+   $path = public_path('storage/').'rpqEk8CNpain1GrCUHx5YIQaZXtQT8K0lm9Lp8vi.jpg';
+   if (file_exists($path)){
+       dump(getimagesize($path));
+       return response()->json(['exists' => true, 'path' => $path,]);
+   } else {
+       return response()->json(['exists' => false, 'path' => $path ]);
+   }
+});
 
 // Route::post('/logout', 'LoginController@logout')->name('logout');
 // Route::get('/profile', 'ProfileController@index')->middleware('auth');

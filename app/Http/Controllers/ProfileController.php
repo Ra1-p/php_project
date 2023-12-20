@@ -14,7 +14,7 @@ class ProfileController extends Controller
 {
     use AuthenticatesUsers;
 
-    public function index(Request $request)
+    public function index()
     {
         return redirect()->route('profile', Auth::id());
     }
@@ -52,6 +52,12 @@ class ProfileController extends Controller
                 'last_name' =>$request->input('last_name'),
                 'birthday' => $request->input('birthday'),
             ]);
+
+            if ($request->hasFile('image')) {
+                $image = $request->file('image');
+                $path = $image->store('image');
+                $profile->update(['image' => $path]);
+            }
 
             DB::commit();
         } catch (\Exception $exception) {
