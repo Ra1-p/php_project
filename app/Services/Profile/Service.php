@@ -3,25 +3,39 @@
 namespace App\Services\Profile;
 
 
+use Illuminate\Support\Facades\DB;
+
 class Service
 {
-    public function index()
+
+    public function update($request, $user)
     {
 
-    }
+        DB::beginTransaction();
 
-    public function show()
-    {
+        try {
+            $user->update([
+                'email' => $request->input('email'),
+                'phone_number' => $request->input('phone_number')
+            ]);
 
-    }
+            $profile = $user->profile();
+            $profile->update([
+                'first_name' => $request->input('first_name'),
+                'last_name' =>$request->input('last_name'),
+                'birthday' => $request->input('birthday'),
+            ]);
 
-    public function edit()
-    {
+            if ($request->hasFile('image')) {
+                $image = $request->file('image');
+                $path = $image->store('profile/image', 'public');
+                $profile->update(['image' => $path]);
+            }
 
-    }
-
-    public function update()
-    {
-
+            DB::commit();
+        } catch (\Exception $exception) {
+            DB::rollBack();
+            return redirect()->back()->withErrors('Произошла ошибка при обновлении данных пользовтаеля');
+        }
     }
 }

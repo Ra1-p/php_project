@@ -15,23 +15,13 @@
                             <div class="collapse navbar-collapse" id="navbarNavDropdown">
                                 <ul class="navbar-nav">
                                     <li class="nav-item">
-                                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                                        <a class="nav-link active" aria-current="page" href="{{ route('profile', $user->id) }}">Home</a>
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link" href="#">News</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="#">Messages</a>
-                                    </li>
-                                    <li class="nav-item dropdown">
-                                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                            Dropdown link
-                                        </a>
-                                        <ul class="dropdown-menu ">
-                                            <li><a class="dropdown-item" href="#">Action</a></li>
-                                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                                            <li><a class="dropdown-item" href="#">Something else here</a></li>
-                                        </ul>
+                                        <a class="nav-link" href="{{ route('messages.list') }}">Messages</a>
                                     </li>
                                 </ul>
                             </div>
@@ -56,12 +46,17 @@
                             <h5 class="my-3">{{ $user->profile()->first()->first_name }} {{ $user->profile()->first()->last_name}}</h5>
                             <p class="text-muted mb-4">{{ $user->location}}</p>
                             <div class="d-flex justify-content-center mb-2">
+                                @if(auth()->check() && $user->profile && auth()->user()->getAuthIdentifier() === $user->id)
                                 <a href="{{ route('profile.edit', $user->id) }}">
-                                    <button type="button" class="btn btn-primary">Edit</button>
+                                    <button type="button" class="btn btn-primary">Edit </button>
                                 </a>
-                                <button type="button" class="btn btn-primary ms-1">Follow</button>
+                                @else
+                                <a href="#">
+                                    <button type="button" class="btn btn-primary ms-1">Follow</button>
+                                </a>
+                                @endif
                                 <a href="{{ route('messages.list') }}">
-                                <button type="button" class="btn btn-outline-primary ms-1">Message</button>
+                                    <button type="button" class="btn btn-outline-primary ms-1">Message</button>
                                 </a>
                             </div>
                         </div>

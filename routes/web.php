@@ -22,18 +22,16 @@ Route::get('/profile/{id}',[\App\Http\Controllers\ProfileController::class, 'sho
 Route::get('/profile/{user}/edit',[\App\Http\Controllers\ProfileController::class, 'edit'])->name('profile.edit');
 Route::patch('/profile/{user}/update',[\App\Http\Controllers\ProfileController::class, 'update'])->name('profile.update');
 
+// Ссылки на получение, добавление и удаления в списке друзей
+Route::post('friend/send/{friendId}', [\App\Http\Controllers\FriendController::class, 'sendFriendRequest'])->name('friend.send')->middleware('auth');
+Route::post('/friend/accept/{friendId}', [\App\Http\Controllers\FriendController::class, 'acceptFriendRequest'])->name('friend.accept')->middleware('auth');
+Route::post('/friend/cancel/{friendId}', [\App\Http\Controllers\FriendController::class, 'cancelFriendRequest'])->name('friend.cancel')->middleware('auth');
+Route::get('/friends', [\App\Http\Controllers\FriendController::class, 'getFriends'])->name('friends')->middleware('auth');
+
+
 Route::get('/messages',[\App\Http\Controllers\MessageController::class, 'index'])->name('messages.list');
 
-Route::get('/check', function (){
-   $user =  request()->user();
-   $path = public_path($user->profile->image);
-   if (file_exists($path)){
-       dump(getimagesize($path));
-       return response()->json(['exists' => true, 'path' => $path,]);
-   } else {
-       return response()->json(['exists' => false, 'path' => $path ]);
-   }
-});
+
 
 // Route::post('/logout', 'LoginController@logout')->name('logout');
 // Route::get('/profile', 'ProfileController@index')->middleware('auth');
