@@ -70,6 +70,11 @@ class User extends Model implements Authenticatable
         return $this->hasOne(Profile::class);
     }
 
+    public function friend()
+    {
+        return $this->hasMany(Friend::class);
+    }
+
     public function getAuthIdentifierName()
     {
         return 'id'; // Имя поля, которое используется в качестве идентификатора аутентификации

@@ -5,7 +5,7 @@
 
     <section method='get' , style="background-color: #eee;">
         <head>
-            <title>{{ $user->profile()->first()->first_name }} Profile</title>
+            <title>{{ $user->profile->first_name }} Profile</title>
         </head>
         <div class="container py-5">
             <div class="row">
@@ -19,6 +19,9 @@
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link" href="#">News</a>
+                                    </li>
+                                    <li>
+                                        <a class="nav-link" href="{{ route('friends', $user) }}">Friend list</a>
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link" href="{{ route('messages.list') }}">Messages</a>
@@ -43,7 +46,7 @@
                             @else
                                 <img src="https://ростр.рф/assets/img/no-profile.png" alt="avatar" class="rounded-circle img-fluid" style="width: 150px;">
                             @endif
-                            <h5 class="my-3">{{ $user->profile()->first()->first_name }} {{ $user->profile()->first()->last_name}}</h5>
+                            <h5 class="my-3">{{ $user->profile->first_name }} {{ $user->profile->last_name}}</h5>
                             <p class="text-muted mb-4">{{ $user->location}}</p>
                             <div class="d-flex justify-content-center mb-2">
                                 @if(auth()->check() && $user->profile && auth()->user()->getAuthIdentifier() === $user->id)
@@ -70,7 +73,7 @@
                                     <p class="mb-0">Full Name</p>
                                 </div>
                                 <div class="col-sm-9">
-                                    <p class="text-muted mb-0">{{ $user->profile()->first()->first_name }} {{ $user->profile()->first()->last_name}}</p>
+                                    <p class="text-muted mb-0">{{ $user->profile->first_name }} {{ $user->profile->last_name}}</p>
                                 </div>
                             </div>
                             <hr>
@@ -106,7 +109,7 @@
                                     <p class="mb-0">Address</p>
                                 </div>
                                 <div class="col-sm-9">
-                                    <p type="phone" class="text-muted mb-0">{{ $user->profile()->first()->location}}</p>
+                                    <p type="phone" class="text-muted mb-0">{{ $user->profile->location}}</p>
                                 </div>
                             </div>
                         </div>

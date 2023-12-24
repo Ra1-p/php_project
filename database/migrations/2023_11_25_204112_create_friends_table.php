@@ -15,7 +15,13 @@ class CreateFriendsTable extends Migration
     {
         Schema::create('friends', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id');
+            $table->foreignId('friend_id');
+            $table->boolean('accepted')->default(false);
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('friend_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

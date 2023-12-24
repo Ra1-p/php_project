@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Hash;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 
 
+
 class UserController extends Controller
 {
     use AuthenticatesUsers;

@@ -3,6 +3,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Friend;
 use App\Profile;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
@@ -22,7 +23,6 @@ class ProfileController extends Controller
     {
         /** @var User $user */
         $user = User::query()->with('profile')->find($id);
-
         if (!$user) {
             return redirect()->back()->with('error', 'Пользователя с такими учетными данным не существует'); // или другая логика обработки отсутствующего пользователя
         }
