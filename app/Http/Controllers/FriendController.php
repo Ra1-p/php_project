@@ -26,13 +26,13 @@ class FriendController extends Controller
     public function getFriends($id)
     {
         $user = User::find($id);
-        $friends = $user->friend;
-        $fr = array();
-        foreach ($friends as $friend)
+        $data = $user->friend;
+        $friends = array();
+        foreach ($data as $friend)
         {
-            array_push($fr, User::find($friend->friend_id));
+            array_push($friends, User::find($friend->friend_id));
         }
-        return view('friend.list', compact('user', 'fr'));
+        return view('friend.list', compact('user', 'friends'));
     }
 
 

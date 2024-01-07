@@ -24,7 +24,7 @@
                                         <a class="nav-link" href="{{ route('friends', $user) }}">Friend list</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="{{ route('messages.list') }}">Messages</a>
+                                        <a class="nav-link" href="{{ route('messages.list', $user->id) }}">Messages</a>
                                     </li>
                                 </ul>
                             </div>
@@ -58,7 +58,7 @@
                                     <button type="button" class="btn btn-primary ms-1">Follow</button>
                                 </a>
                                 @endif
-                                <a href="{{ route('messages.list') }}">
+                                <a href="{{ route('messages.list', $user->id) }}">
                                     <button type="button" class="btn btn-outline-primary ms-1">Message</button>
                                 </a>
                             </div>

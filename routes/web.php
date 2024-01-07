@@ -29,7 +29,7 @@ Route::post('/friend/cancel/{friendId}', [\App\Http\Controllers\FriendController
 Route::get('/friends/{id}', [\App\Http\Controllers\FriendController::class, 'getFriends'])->name('friends')->middleware('auth');
 
 
-Route::get('/messages' ,[\App\Http\Controllers\MessageController::class, 'index'])->name('messages.list')->middleware('auth');
+Route::get('/messages/{id}' ,[\App\Http\Controllers\MessageController::class, 'index'])->name('messages.list')->middleware('auth');
 
 
 

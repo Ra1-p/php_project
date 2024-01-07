@@ -27,6 +27,7 @@ class ProfileController extends Controller
             return redirect()->back()->with('error', 'Пользователя с такими учетными данным не существует'); // или другая логика обработки отсутствующего пользователя
         }
         return view('profile.profile', compact('user'));
+
     }
 
     public function edit(User $user)

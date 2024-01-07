@@ -39,7 +39,7 @@
                     <div class="card mb-4">
                         <div class="card-body">
                             <div class="row">
-                                @foreach($fr as $friend)
+                                @foreach($friends as $friend)
                                     <div class="col-sm-8">
                                         @if($friend->profile->image)
                                             <img src="{{ Storage::url($friend->profile->image) }}" alt="avatar" class="rounded-circle img-fluid" style="width: 50px;">
