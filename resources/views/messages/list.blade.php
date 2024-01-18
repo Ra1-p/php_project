@@ -14,20 +14,27 @@
                             <ul class="navbar-nav">
                                 <li class="nav-item">
                                     <a class="nav-link active" aria-current="page"
-                                       href="{{ route('profile', $user->id) }}">Home</a>
+                                       href="{{ route('profile', auth()->user()->getAuthIdentifier()) }}">Home</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="#">News</a>
                                 </li>
-                                <li>
-                                    <a class="nav-link" href="{{ route('friends', $user->id) }}">Friend list</a>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle show" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="true">
+                                        Friends
+                                    </a>
+                                    <ul class="dropdown-menu show" data-bs-popper="static">
+                                        <li><a class="dropdown-item" href="{{ route('friends', $user) }}">My friends</a></li>
+                                        <li><a class="dropdown-item" href="#">Find friends</a></li>
+                                        <li><a class="dropdown-item" href="{{ route('show.users', $user->id) }}">All users</a></li>
+                                    </ul>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('messages.list', $user->id) }}">Messages</a>
                                 </li>
                             </ul>
                         </div>
-                        <form action="{{ route('logout') }}" method="post" class="d-flex" role="search">
+                        <form action="{{ route('logout') }}" method="post" class="d-flex">
                             @csrf
                             <button class="btn btn-outline-secondary" type="submit">Logout</button>
                         </form>

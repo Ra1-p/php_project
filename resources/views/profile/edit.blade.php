@@ -23,7 +23,7 @@
                                         <i class="fas fa-user fa-lg me-3 fa-fw"></i>
                                         <div class="form-outline flex-fill mb-0">
                                             <input name="first_name" type="text" id="form3Example1c" class="form-control"
-                                                   value="{{ $user->profile()->first()->first_name }}"/>
+                                                   value="{{ $user->profile->first_name }}"/>
                                             <label class="form-label" for="form3Example1c">Your First Name</label>
                                         </div>
                                     </div>
@@ -32,7 +32,7 @@
                                         <i class="fas fa-user fa-lg me-3 fa-fw"></i>
                                         <div class="form-outline flex-fill mb-0">
                                             <input name="last_name" type="text" id="form3Example1c" class="form-control"
-                                                   value="{{ $user->profile()->first()->last_name }}"/>
+                                                   value="{{ $user->profile->last_name }}"/>
                                             <label class="form-label" for="form3Example1c">Your Last Name</label>
                                         </div>
                                     </div>
@@ -41,7 +41,7 @@
                                         <i class="fas fa-user fa-lg me-3 fa-fw"></i>
                                         <div class="form-outline flex-fill mb-0">
                                             <input name="birthday" type="date" id="form3Example1c" class="form-control"
-                                                   value="{{ old('birthday', $user->profile()->first()->birthday ?? '') }}">
+                                                   value="{{ old('birthday', $user->profile->birthday ?? '') }}">
                                             <label for="birthday">Birth Date</label>
                                         </div>
                                     </div>

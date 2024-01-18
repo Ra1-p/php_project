@@ -3,13 +3,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Friend;
-use App\Profile;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use App\User;
-use Illuminate\Support\Facades\DB;
 
 class ProfileController extends Controller
 {

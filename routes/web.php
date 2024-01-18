@@ -27,6 +27,8 @@ Route::post('/friend/send/{friendId}', [\App\Http\Controllers\FriendController::
 Route::post('/friend/accept/{friendId}', [\App\Http\Controllers\FriendController::class, 'acceptFriendRequest'])->name('friend.accept')->middleware('auth');
 Route::post('/friend/cancel/{friendId}', [\App\Http\Controllers\FriendController::class, 'cancelFriendRequest'])->name('friend.cancel')->middleware('auth');
 Route::get('/friends/{id}', [\App\Http\Controllers\FriendController::class, 'getFriends'])->name('friends')->middleware('auth');
+//Route::get('/friends/find', [\App\Http\Controllers\FriendController::class, 'findFriends'])->name('find.friends')->middleware('auth');
+Route::get('friends/{id}/users', [\App\Http\Controllers\FriendController::class, 'showAllUsers'])->name('show.users')->middleware('auth');
 
 
 Route::get('/messages/{id}' ,[\App\Http\Controllers\MessageController::class, 'index'])->name('messages.list')->middleware('auth');

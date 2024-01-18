@@ -36,6 +36,7 @@
     <title>Main</title>
 </head>
 <body style="background-color: #eee;">
+
 @if($errors->any())
     <div id="error-modal" class="error-modal">
         <div class="error-modal-content">

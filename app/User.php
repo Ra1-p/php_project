@@ -3,6 +3,7 @@
 namespace App;
 
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
@@ -16,6 +17,8 @@ use Illuminate\Contracts\Auth\Authenticatable;
  */
 class User extends Model implements Authenticatable
 {
+    use HasFactory;
+    use \Illuminate\Auth\Authenticatable;
     use SoftDeletes;
     use Notifiable;
 
@@ -69,42 +72,12 @@ class User extends Model implements Authenticatable
         return $this->hasOne(Profile::class);
     }
 
-    public function friend()
+    public function friends()
     {
-        return $this->hasMany(Friend::class);
+        return $this->belongsToMany(User::class, 'friends', 'user_id', 'friend_id')
+            ->withPivot('status')
+            ->wherePivot('status', 'sent');
     }
-
-    public function getAuthIdentifierName()
-    {
-        return 'id'; // Имя поля, которое используется в качестве идентификатора аутентификации
-    }
-
-    public function getAuthIdentifier()
-    {
-        return $this->getKey(); // Возвращает значение идентификатора аутентификации
-    }
-
-    public function getAuthPassword()
-    {
-        return $this->password; // Возвращает пароль пользователя
-    }
-
-    public function getRememberToken()
-    {
-        return $this->remember_token;
-    }
-
-    public function getRememberTokenName()
-    {
-        return 'remember_token';
-    }
-
-    public function setRememberToken($value)
-    {
-        $this->attributes['remember_token'] = $value;
-        $this->save();
-    }
-
 //
 //    public function posts()
 //    {

@@ -21,16 +21,13 @@
                                     <a class="nav-link" href="#">News</a>
                                 </li>
                                 <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle show" href="#" role="button"
-                                       data-bs-toggle="dropdown" aria-expanded="true">
+                                    <a class="nav-link dropdown-toggle show" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="true">
                                         Friends
                                     </a>
                                     <ul class="dropdown-menu show" data-bs-popper="static">
-                                        <li><a class="dropdown-item" href="{{ route('friends', $user) }}">My friends</a>
-                                        </li>
+                                        <li><a class="dropdown-item" href="{{ route('friends', $user) }}">My friends</a></li>
                                         <li><a class="dropdown-item" href="#">Find friends</a></li>
-                                        <li><a class="dropdown-item" href="{{ route('show.users', $user->id) }}">All
-                                                users</a></li>
+                                        <li><a class="dropdown-item" href="{{ route('show.users', $user->id) }}">All users</a></li>
                                     </ul>
                                 </li>
                                 <li class="nav-item">
@@ -48,15 +45,15 @@
                 <div class="col-lg-12">
                     <div class="card mb-4">
                         <div class="card-body">
-                            <div class="col-lg-8">
-                                <form class="d-flex" role="search">
-                                    <input class="form-control me-2" type="search" placeholder="Search"
-                                           aria-label="Search">
-                                    <button class="btn btn-outline-success" type="submit">Search</button>
-                                </form>
-                            </div>
                             <div class="row">
-                                @foreach($friends as $friend)
+
+                                <div class="col-lg-8">
+                                    <form class="d-flex" role="search">
+                                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                                        <button class="btn btn-outline-success" type="submit">Search</button>
+                                    </form>
+                                </div>
+                                @foreach($users as $friend)
                                     <div class="col-sm-8">
                                         <a class="mb-0" href="{{ route('profile', $friend->id) }}">
                                             @if($friend->profile->image)
